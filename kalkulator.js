@@ -104,7 +104,7 @@ const calculate = () => {
       return;
   }
 
-  calculationHistory.push({
+  calculationHistory.unshift({
     prevNumber: prevNumber,
     operator: calculationOperator,
     currentNumber: currentNumber,
