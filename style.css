@@ -78,11 +78,26 @@ button:hover {
   background-color: rgb(243, 195, 107);
 }
 
+.history-container {
+  display: flex;
+  /* properti pendukung */
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.history-container h2 {
+  text-align: center;
+}
+
+.history {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0 24px;
+}
+
 @media screen and (max-width: 513px) {
   button {
     padding: 10px;
-  }
-  .history {
-    width: 100%;
   }
 }

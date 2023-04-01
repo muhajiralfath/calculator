@@ -12,12 +12,24 @@ const clearBtn = document.querySelector(".all-clear");
 
 const decimalBtn = document.querySelector(".decimal");
 
+const historyScreen = document.querySelector(".history");
+
 let prevNumber = "";
 let calculationOperator = "";
 let currentNumber = "0";
 
+let calculationHistory = [];
+
 const updateScreen = (number) => {
   calculatorScreen.value = number;
+};
+
+const updateHistory = () => {
+  let history = "";
+  calculationHistory.forEach((calculation) => {
+    history += `${calculation.prevNumber} ${calculation.operator} ${calculation.currentNumber} = ${calculation.result} <br>`;
+  });
+  historyScreen.innerHTML = history;
 };
 
 const inputNumber = (number) => {
@@ -51,7 +63,8 @@ const inputOperator = (operator) => {
 const clearAll = () => {
   prevNumber = "";
   calculationOperator = "";
-  currentNumber = "";
+  currentNumber = "0";
+  updateHistory();
 };
 
 // Click Button Number
@@ -90,6 +103,14 @@ const calculate = () => {
     default:
       return;
   }
+
+  calculationHistory.push({
+    prevNumber: prevNumber,
+    operator: calculationOperator,
+    currentNumber: currentNumber,
+    result: result,
+  });
+
   currentNumber = result;
   calculationOperator = "";
 };
@@ -100,6 +121,7 @@ equalSign.addEventListener("click", () => {
   }
   calculate();
   updateScreen(currentNumber);
+  updateHistory();
 });
 
 clearBtn.addEventListener("click", () => {
